@@ -25,7 +25,7 @@ public class DescuentoController {
     	
     }
 
-    /** cambio
+    /**
      *
      */
     public void ABM() {
