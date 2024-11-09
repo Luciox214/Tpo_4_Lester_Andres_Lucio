@@ -1,6 +1,7 @@
 package view;
 
 import controllers.FuncionController;
+import dto.AltaFuncionDTO;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -33,7 +34,7 @@ public class AltaFuncion extends JFrame implements ActionListener {
 
     private JMenuItem generoMasculino,generoFemenino;
 
-
+    private AltaFuncionDTO dto;
 
 
 
@@ -81,13 +82,84 @@ public class AltaFuncion extends JFrame implements ActionListener {
         generoFemenino = new JMenuItem("Femenino");
         generoMenu.add(generoMasculino);
         generoMenu.add(generoFemenino);
+
+        //Agrego los actionListener para cada item y botón:
+        sucursal1.addActionListener(this);
+        sucursal2.addActionListener(this);
+        sucursal3.addActionListener(this);
+        salaA.addActionListener(this);
+        salaB.addActionListener(this);
+        salaC.addActionListener(this);
+        generoMasculino.addActionListener(this);
+        generoFemenino.addActionListener(this);
+        aceptarButton.addActionListener(this);
+        cancelarButton.addActionListener(this);
+
+        //Instancio el DTO para esta vista:
+        dto = new AltaFuncionDTO();
     }
 
     //Implemento el método actionPerformed y defino qué debe hacer cada item
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()==sucursal1){
 
+        //Defino las acciones para los items de las sucursales:
+        if (e.getSource()==sucursal1){
+            dto.setSucursal(sucursal1.getText());
+            JOptionPane.showMessageDialog(null,"¡Sucursal 1 agregada!");
+        }
+        if (e.getSource()==sucursal2){
+            dto.setSucursal(sucursal2.getText());
+            JOptionPane.showMessageDialog(null,"¡Sucursal 2 agregada!");
+        }
+
+        if (e.getSource()==sucursal3){
+            dto.setSucursal(sucursal3.getText());
+            JOptionPane.showMessageDialog(null,"¡Sucursal 3 agregada!");
+        }
+
+        //Defino las acciones para los items de las salas:
+        if (e.getSource()==salaA){
+            dto.setSucursal(salaA.getText());
+            JOptionPane.showMessageDialog(null,"¡Sala A agregada!");
+        }
+
+        if (e.getSource()==salaB){
+            dto.setSucursal(salaB.getText());
+            JOptionPane.showMessageDialog(null,"¡Sala B agregada!");
+        }
+
+        if (e.getSource()==salaC){
+            dto.setSucursal(salaC.getText());
+            JOptionPane.showMessageDialog(null,"¡Sala C agregada!");
+        }
+
+        //Defino las acciones para los items de los géneros:
+        if (e.getSource()==generoMasculino){
+            dto.setSucursal(generoMasculino.getText());
+            JOptionPane.showMessageDialog(null,"¡Género Masculino agregado!");
+        }
+
+        if (e.getSource()==generoFemenino){
+            dto.setSucursal(generoFemenino.getText());
+            JOptionPane.showMessageDialog(null,"¡Género Femenino agregado!");
+        }
+
+
+        //Defino las acciones para el botón Aceptar
+        if (e.getSource()==aceptarButton){
+            dto.setHorario(horarioTextField.getText());
+            //todo: ----> Llamar al método que tenga el FuncionController para el alta de una función <-----
+        }
+
+        //Defino las acciones para el botón Cancelar:
+        if (e.getSource()==cancelarButton){
+            dto.setSucursal("");
+            dto.setSala("");
+            dto.setGenero("");
+            dto.setHorario("");
+
+            JOptionPane.showMessageDialog(null,"Operación Cancelada! Ingrese nuevamente los datos");
         }
     }
 }
