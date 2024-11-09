@@ -32,7 +32,7 @@ public class AltaFuncion extends JFrame implements ActionListener {
 
     private JMenuItem salaA,salaB,salaC;
 
-    private JMenuItem generoMasculino,generoFemenino;
+    private JMenuItem Terror, Drama,Romance,Biografica,Suspenso;
 
     private AltaFuncionDTO dto;
 
@@ -78,10 +78,16 @@ public class AltaFuncion extends JFrame implements ActionListener {
         salaMenu.add(salaC);
 
         //Instancio los items del menú de generos y los agrego al mismo:
-        generoMasculino = new JMenuItem("Masculino");
-        generoFemenino = new JMenuItem("Femenino");
-        generoMenu.add(generoMasculino);
-        generoMenu.add(generoFemenino);
+        Terror = new JMenuItem("Terror");
+        Drama = new JMenuItem("Drama");
+        Romance = new JMenuItem("Romance");
+        Biografica = new JMenuItem("Biografica");
+        Suspenso = new JMenuItem("Suspenso");
+        generoMenu.add(Terror);
+        generoMenu.add(Drama);
+        generoMenu.add(Romance);
+        generoMenu.add(Biografica);
+        generoMenu.add(Suspenso);
 
         //Agrego los actionListener para cada item y botón:
         sucursal1.addActionListener(this);
@@ -90,8 +96,11 @@ public class AltaFuncion extends JFrame implements ActionListener {
         salaA.addActionListener(this);
         salaB.addActionListener(this);
         salaC.addActionListener(this);
-        generoMasculino.addActionListener(this);
-        generoFemenino.addActionListener(this);
+        Terror.addActionListener(this);
+        Drama.addActionListener(this);
+        Romance.addActionListener(this);
+        Biografica.addActionListener(this);
+        Suspenso.addActionListener(this);
         aceptarButton.addActionListener(this);
         cancelarButton.addActionListener(this);
 
@@ -135,14 +144,29 @@ public class AltaFuncion extends JFrame implements ActionListener {
         }
 
         //Defino las acciones para los items de los géneros:
-        if (e.getSource()==generoMasculino){
-            dto.setSucursal(generoMasculino.getText());
-            JOptionPane.showMessageDialog(null,"¡Género Masculino agregado!");
+        if (e.getSource()== Terror){
+            dto.setSucursal(Terror.getText());
+            JOptionPane.showMessageDialog(null,"¡Género Terror agregado!");
         }
 
-        if (e.getSource()==generoFemenino){
-            dto.setSucursal(generoFemenino.getText());
-            JOptionPane.showMessageDialog(null,"¡Género Femenino agregado!");
+        if (e.getSource()== Drama){
+            dto.setSucursal(Drama.getText());
+            JOptionPane.showMessageDialog(null,"¡Género Drama agregado!");
+        }
+
+        if (e.getSource()== Romance){
+            dto.setSucursal(Romance.getText());
+            JOptionPane.showMessageDialog(null,"¡Género Romance agregado!");
+        }
+
+        if (e.getSource()== Biografica){
+            dto.setSucursal(Biografica.getText());
+            JOptionPane.showMessageDialog(null,"¡Género Biografica agregado!");
+        }
+
+        if (e.getSource()== Suspenso){
+            dto.setSucursal(Suspenso.getText());
+            JOptionPane.showMessageDialog(null,"¡Género Suspenso agregado!");
         }
 
 

@@ -1,5 +1,6 @@
 package controllers;
 
+import dto.AltaFuncionDTO;
 import dto.FuncionDTO;
 import enums.TipoGenero;
 import enums.TipoProyeccion;
@@ -34,11 +35,17 @@ public class FuncionController {
 
 
 
-    /**
-     * 
-     */
-    public void ABM() {
-        // TODO implement here
+    /** ----> SECCION DE ABM <---- */
+    public void AltaDeUnaFuncion(AltaFuncionDTO dto) {
+
+        //Almaceno la fecha actual en una variable:
+        Date fechaActual = new Date();
+
+        //Genero un funcionID aleatorio entre 1000 y 9999:
+        Random random = new Random();
+        int funcionID = 1000 + random.nextInt(9000);
+
+        //
     }
 
     /**
