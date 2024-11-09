@@ -143,6 +143,6 @@ public class ConsultaPelicula extends JFrame {
 
 
     /*
-    cambio
+    cambio2
      */
 }
