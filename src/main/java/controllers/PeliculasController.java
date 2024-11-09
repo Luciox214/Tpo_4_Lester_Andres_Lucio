@@ -75,4 +75,7 @@ public class PeliculasController {
 
     }
 
+    public List<Pelicula> getPeliculas() {
+        return peliculas;
+    }
 }

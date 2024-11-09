@@ -45,4 +45,11 @@ public class Sucursal {
         return 0;
     }
 
+    public String getDenominacion() {
+        return denominacion;
+    }
+
+    public List<Sala> getSalas() {
+        return salas;
+    }
 }
