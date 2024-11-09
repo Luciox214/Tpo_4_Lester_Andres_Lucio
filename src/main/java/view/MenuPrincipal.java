@@ -71,7 +71,8 @@ public class MenuPrincipal extends JFrame implements ActionListener {
 
         //Defino acciones cuando hago clic en el item de AltaFuncion:
         if (e.getSource()==altaFuncion){
-            //todo: Agregar invocacion a la ventana donde se hace el alta de una función.
+            AltaFuncion alta = new AltaFuncion("Creación de una nueva función");
+            alta.setVisible(true);
         }
 
         //Defino acciones cuando hago clic en el item de AltaPelicula:
