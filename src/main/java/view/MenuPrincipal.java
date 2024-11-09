@@ -13,7 +13,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenu AltasMenu;
     private JMenu ConsultasMenu;
 
-    private JMenuItem altaFuncion,altaPelicula;
+    private JMenuItem altaFuncion,altaPelicula,consultaGenero;
 
 
     //Constructor:
@@ -40,12 +40,15 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         //Instancio y agrego los items al menu AltasMenu:
         altaFuncion = new JMenuItem("Alta de Funcion");
         altaPelicula = new JMenuItem("Alta de Pelicula");
+        consultaGenero = new JMenuItem("Consulta pelicula por genero");
+        ConsultasMenu.add(consultaGenero);
         AltasMenu.add(altaFuncion);
         AltasMenu.add(altaPelicula);
 
         //Asocio los actionListeners a sus respectivos items:
         altaFuncion.addActionListener(this);
         altaPelicula.addActionListener(this);
+        consultaGenero.addActionListener(this);
 
 
 
@@ -75,5 +78,14 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         if (e.getSource()==altaPelicula){
             //todo: Agregar invocacion a la ventana donde se hace el alta de una pelicula.
         }
+
+        if(e.getSource()==consultaGenero){
+
+            ConsultaPelicula consultaPelicula =  new ConsultaPelicula();
+            consultaPelicula.setVisible(true);
+
+        }
+
+
     }
 }
