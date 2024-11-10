@@ -5,14 +5,14 @@ public class AltaFuncionDTO {
     /*ATRIBUTOS DE CLASE*/
     private String sucursal;
     private String sala;
-    private String genero;
+    private String nombrePelicula;
     private String horario;
 
     /* CONSTRUCTOR */
     public AltaFuncionDTO(){
         this.sucursal = "";
         this.sala = "";
-        this.genero = "";
+        this.nombrePelicula = "";
         this.horario = "";
     }
 
@@ -34,12 +34,12 @@ public class AltaFuncionDTO {
         this.sala = sala;
     }
 
-    public String getGenero() {
-        return genero;
+    public String getNombrePelicula() {
+        return nombrePelicula;
     }
 
-    public void setGenero(String genero) {
-        this.genero = genero;
+    public void setNombrePelicula(String nombrePelicula) {
+        this.nombrePelicula = nombrePelicula;
     }
 
     public String getHorario() {

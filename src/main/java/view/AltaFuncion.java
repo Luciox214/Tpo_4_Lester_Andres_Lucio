@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 public class AltaFuncion extends JFrame implements ActionListener {
     private JPanel pnlPrincipal;
@@ -85,7 +84,7 @@ public class AltaFuncion extends JFrame implements ActionListener {
         salaMenu.add(salaB);
         salaMenu.add(salaC);
 
-        //Instancio los items del menú de generos y los agrego al mismo:
+        //Instancio los subMenus del menú de generos y los agrego al mismo:
         Terror = new JMenu("Terror");
         Drama = new JMenu("Drama");
         Romance = new JMenu("Romance");
@@ -96,6 +95,9 @@ public class AltaFuncion extends JFrame implements ActionListener {
         generoMenu.add(Romance);
         generoMenu.add(Biografica);
         generoMenu.add(Suspenso);
+
+        //Instacio los items de cada submenú:
+
 
         //Agrego los actionListener para cada item y botón:
         sucursal1.addActionListener(this);
@@ -184,14 +186,22 @@ public class AltaFuncion extends JFrame implements ActionListener {
         //Defino las acciones para el botón Aceptar
         if (e.getSource()==aceptarButton){
             dto.setHorario(horarioTextField.getText());
-            //todo: ----> Llamar al método que tenga el FuncionController para el alta de una función <-----
+            dto.setNombrePelicula(peliculaSeleccionada);
+
+            //Llamar al método que tenga el FuncionController para el alta de una función
+            try {
+                funcionController.AltaDeUnaFuncion(dto);
+                JOptionPane.showMessageDialog(null,"Se agregó la función con éxito");
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null,ex.getMessage());
+            }
         }
 
         //Defino las acciones para el botón Cancelar:
         if (e.getSource()==cancelarButton){
             dto.setSucursal("");
             dto.setSala("");
-            dto.setGenero("");
+            dto.setNombrePelicula("");
             dto.setHorario("");
 
             JOptionPane.showMessageDialog(null,"Operación Cancelada! Ingrese nuevamente los datos");

@@ -62,7 +62,7 @@ public class FuncionController {
         Sucursal sucursalDeLaFuncion = buscarSucursalPorNombre(nombreSucursal);
 
         //Busco la sala en la lista de salas de la sucursal:
-        Sala salaDeLaFuncion;
+        Sala salaDeLaFuncion = null;
 
         try{
             for(Sala sala : sucursalDeLaFuncion.getSalas()){
@@ -70,10 +70,15 @@ public class FuncionController {
                     salaDeLaFuncion = sala;
                 }
             }
-        } catch (Exception e){throw new Exception("No se encontró la sala ingresada");}
+        } catch (Exception e){
+            throw new Exception("No se encontró la sala ingresada");
+        }
 
-        //todo: ----> Busco la pelicula en la lista de peliculas de su controller correspondiente:
+        //Busco la pelicula en la lista de peliculas de su controller correspondiente:
+        Pelicula pelicula = buscarPeliculaPorNombre(dto.getNombrePelicula());
 
+        //Construyo y agrego la funcion a su respectiva lista en este controller:
+        funciones.add(new Funcion(fechaActual,funcionID,horarioFuncion,null,salaDeLaFuncion,pelicula));
 
     }
 
