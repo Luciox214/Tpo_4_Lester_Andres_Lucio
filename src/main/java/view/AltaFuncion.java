@@ -1,11 +1,15 @@
 package view;
 
 import controllers.FuncionController;
+import controllers.PeliculasController;
 import dto.AltaFuncionDTO;
+import dto.PeliculaDTO;
+import enums.TipoGenero;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class AltaFuncion extends JFrame implements ActionListener {
     private JPanel pnlPrincipal;
@@ -32,7 +36,7 @@ public class AltaFuncion extends JFrame implements ActionListener {
 
     private JMenuItem salaA,salaB,salaC;
 
-    private JMenuItem Terror, Drama,Romance,Biografica,Suspenso;
+    private JMenu Terror, Drama,Romance,Biografica,Suspenso;
 
     private AltaFuncionDTO dto;
 
@@ -40,6 +44,7 @@ public class AltaFuncion extends JFrame implements ActionListener {
 
     //Variable de tipo controller:
     FuncionController funcionController; //Falta instanciar esta variable del controlador.
+    PeliculasController peliculasController = PeliculasController.getInstance();
 
     //Constructor:
     public AltaFuncion(String titulo){
@@ -78,11 +83,11 @@ public class AltaFuncion extends JFrame implements ActionListener {
         salaMenu.add(salaC);
 
         //Instancio los items del menú de generos y los agrego al mismo:
-        Terror = new JMenuItem("Terror");
-        Drama = new JMenuItem("Drama");
-        Romance = new JMenuItem("Romance");
-        Biografica = new JMenuItem("Biografica");
-        Suspenso = new JMenuItem("Suspenso");
+        Terror = new JMenu("Terror");
+        Drama = new JMenu("Drama");
+        Romance = new JMenu("Romance");
+        Biografica = new JMenu("Biografica");
+        Suspenso = new JMenu("Suspenso");
         generoMenu.add(Terror);
         generoMenu.add(Drama);
         generoMenu.add(Romance);
@@ -96,13 +101,11 @@ public class AltaFuncion extends JFrame implements ActionListener {
         salaA.addActionListener(this);
         salaB.addActionListener(this);
         salaC.addActionListener(this);
-        Terror.addActionListener(this);
-        Drama.addActionListener(this);
-        Romance.addActionListener(this);
-        Biografica.addActionListener(this);
-        Suspenso.addActionListener(this);
+
         aceptarButton.addActionListener(this);
         cancelarButton.addActionListener(this);
+
+        //cargarPeliculasPorGenero(TipoGenero.Romance, Romance);
 
         //Instancio el DTO para esta vista:
         dto = new AltaFuncionDTO();
@@ -110,7 +113,7 @@ public class AltaFuncion extends JFrame implements ActionListener {
 
     //Implemento el método actionPerformed y defino qué debe hacer cada item
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e){
 
         //Defino las acciones para los items de las sucursales:
         if (e.getSource()==sucursal1){
@@ -152,6 +155,7 @@ public class AltaFuncion extends JFrame implements ActionListener {
         if (e.getSource()== Drama){
             dto.setSucursal(Drama.getText());
             JOptionPane.showMessageDialog(null,"¡Género Drama agregado!");
+
         }
 
         if (e.getSource()== Romance){
@@ -185,5 +189,23 @@ public class AltaFuncion extends JFrame implements ActionListener {
 
             JOptionPane.showMessageDialog(null,"Operación Cancelada! Ingrese nuevamente los datos");
         }
+
+
     }
+
+    /*
+    private void cargarPeliculasPorGenero(TipoGenero genero, JMenu menu) {
+        try {
+            ArrayList<PeliculaDTO> peliculas = peliculasController.buscarPeliculaPorGenero(genero);
+            menu.removeAll(); // Limpia los elementos anteriores
+            for (PeliculaDTO peli : peliculas) {
+                JMenuItem itemNuevo = new JMenuItem(peli.getNombreDTO());
+                menu.add(itemNuevo);
+            }
+        } catch (Exception x) {
+            JOptionPane.showMessageDialog(null, "No existen películas de este género");}
+    }
+    */
+
 }
+
