@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AltaFuncion extends JFrame implements ActionListener {
     private JPanel pnlPrincipal;
@@ -39,6 +40,8 @@ public class AltaFuncion extends JFrame implements ActionListener {
     private JMenu Terror, Drama,Romance,Biografica,Suspenso;
 
     private AltaFuncionDTO dto;
+
+    private String peliculaSeleccionada;
 
 
 
@@ -105,7 +108,11 @@ public class AltaFuncion extends JFrame implements ActionListener {
         aceptarButton.addActionListener(this);
         cancelarButton.addActionListener(this);
 
-        //cargarPeliculasPorGenero(TipoGenero.Romance, Romance);
+        cargarPeliculasPorGenero(TipoGenero.Romance, Romance);
+        cargarPeliculasPorGenero(TipoGenero.Terror, Terror);
+        cargarPeliculasPorGenero(TipoGenero.Suspenso, Suspenso);
+        cargarPeliculasPorGenero(TipoGenero.Biografica, Biografica);
+        cargarPeliculasPorGenero(TipoGenero.Drama, Drama);
 
         //Instancio el DTO para esta vista:
         dto = new AltaFuncionDTO();
@@ -193,19 +200,27 @@ public class AltaFuncion extends JFrame implements ActionListener {
 
     }
 
-    /*
+
     private void cargarPeliculasPorGenero(TipoGenero genero, JMenu menu) {
+
         try {
-            ArrayList<PeliculaDTO> peliculas = peliculasController.buscarPeliculaPorGenero(genero);
-            menu.removeAll(); // Limpia los elementos anteriores
+            ArrayList<PeliculaDTO> peliculas = peliculasController.buscarPeliculaPorGenero2(genero);
+
             for (PeliculaDTO peli : peliculas) {
                 JMenuItem itemNuevo = new JMenuItem(peli.getNombreDTO());
+                itemNuevo.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        peliculaSeleccionada = itemNuevo.getText();
+                        JOptionPane.showMessageDialog(null,"Pelicula Seleccionada" );
+                    }
+                });
                 menu.add(itemNuevo);
             }
         } catch (Exception x) {
             JOptionPane.showMessageDialog(null, "No existen películas de este género");}
     }
-    */
+
 
 }
 

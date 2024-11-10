@@ -124,4 +124,6 @@ public class Pelicula {
     public void setCondicionesDescuento(CondicionesDescuento condicionesDescuento) {
         this.condicionesDescuento = condicionesDescuento;
     }
+
+
 }

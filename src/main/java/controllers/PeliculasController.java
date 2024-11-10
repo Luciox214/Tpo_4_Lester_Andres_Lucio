@@ -69,6 +69,19 @@ public class PeliculasController {
         return peliculasDTO;
 
     }
+    public ArrayList<PeliculaDTO> buscarPeliculaPorGenero2(TipoGenero tipoGenero) throws Exception {
+
+        ArrayList<PeliculaDTO> peliculasDTO= new ArrayList<>();
+        for (Pelicula pelicula :peliculas){
+            if(pelicula.getGeneroID().equals(tipoGenero)){
+                peliculasDTO.add(PeliculaModelToDTO(pelicula));
+            }
+        }
+
+
+        return peliculasDTO;
+
+    }
 
     private PeliculaDTO PeliculaModelToDTO(Pelicula pelicula){
         return new PeliculaDTO(pelicula.getNombrePelicula(),String.valueOf(pelicula.getDuracionEnMinutos()), pelicula.getDirector(), String.valueOf(pelicula.getGeneroID()));
@@ -77,5 +90,15 @@ public class PeliculasController {
 
     public List<Pelicula> getPeliculas() {
         return peliculas;
+    }
+
+    public Pelicula buscarPeliculaPorNombre(String peliculaNombre){
+        for (Pelicula pelicula: peliculas){
+            if (pelicula.getNombrePelicula().equals(peliculaNombre)){
+                return pelicula;
+            }
+
+        }
+        return null;
     }
 }
