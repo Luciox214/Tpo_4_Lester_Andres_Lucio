@@ -18,6 +18,10 @@ public class PeliculaDTO {
        this.directorDTO= director;
     }
 
+    public PeliculaDTO() {
+
+    }
+
     public String getNombreDTO() {
         return nombreDTO;
     }

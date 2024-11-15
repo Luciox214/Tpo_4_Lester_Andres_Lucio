@@ -13,11 +13,10 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenu AltasMenu;
     private JMenu ConsultasMenu;
 
-    private JMenuItem altaFuncion,altaPelicula,consultaGenero;
+    private JMenuItem altaFuncion, altaPelicula, consultaGenero;
 
-
-    //Constructor:
-    public MenuPrincipal(String titulo){
+    // Constructor:
+    public MenuPrincipal(String titulo) {
 
         // 1) Asigno el titulo a este frame:
         super(titulo);
@@ -32,61 +31,64 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         setLocationRelativeTo(null);
 
         // 5) Seteo el tamaño de la ventana por defecto:
-        setSize(400,400);
+        setSize(400, 400);
 
+        /* Creación y asignación de los submenús e ítems de menú */
 
-        /*Creación y asignación de los Submenus e items de menu*/
-
-        //Instancio y agrego los items al menu AltasMenu:
+        // Instancio y agrego los ítems al menú AltasMenu:
         altaFuncion = new JMenuItem("Alta de Funcion");
         altaPelicula = new JMenuItem("Alta de Pelicula");
         consultaGenero = new JMenuItem("Consulta pelicula por genero");
+
+        // Agrego los ítems a los menús correspondientes:
         ConsultasMenu.add(consultaGenero);
         AltasMenu.add(altaFuncion);
         AltasMenu.add(altaPelicula);
 
-        //Asocio los actionListeners a sus respectivos items:
+        // Asocio los ActionListeners a sus respectivos ítems:
         altaFuncion.addActionListener(this);
         altaPelicula.addActionListener(this);
         consultaGenero.addActionListener(this);
 
+        // Agrego los menús a la barra de menú:
+        BarraMenu = new JMenuBar();
+        BarraMenu.add(AltasMenu);
+        BarraMenu.add(ConsultasMenu);
 
-
-
-
+        // Asigno la barra de menú a la ventana:
+        setJMenuBar(BarraMenu);
     }
 
-    /*Creación del metodo main para arrancar el programa desde aquí*/
+    /* Creación del método main para arrancar el programa desde aquí */
     public static void main(String[] args) {
 
-        //Creo una instancia de este frame:
+        // Creo una instancia de este frame:
         MenuPrincipal menuPrincipal = new MenuPrincipal("Menu Principal del Cine");
 
-        //Vuelvo visible la instancia:
+        // Vuelvo visible la instancia:
         menuPrincipal.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        //Defino acciones cuando hago clic en el item de AltaFuncion:
-        if (e.getSource()==altaFuncion){
+        // Defino acciones cuando hago clic en el ítem de AltaFuncion:
+        if (e.getSource() == altaFuncion) {
             AltaFuncion alta = new AltaFuncion("Creación de una nueva función");
             alta.setVisible(true);
         }
 
-        //Defino acciones cuando hago clic en el item de AltaPelicula:
-        if (e.getSource()==altaPelicula){
-            //todo: Agregar invocacion a la ventana donde se hace el alta de una pelicula.
+        // Defino acciones cuando hago clic en el ítem de AltaPelicula:
+        if (e.getSource() == altaPelicula) {
+            // Invocación a la ventana donde se hace el alta de una película
+            AltaPelicula altaPelicula = new AltaPelicula();
+            altaPelicula.setVisible(true);
         }
 
-        if(e.getSource()==consultaGenero){
-
-            ConsultaPelicula consultaPelicula =  new ConsultaPelicula();
+        // Defino acciones cuando hago clic en el ítem de ConsultaGenero:
+        if (e.getSource() == consultaGenero) {
+            ConsultaPelicula consultaPelicula = new ConsultaPelicula();
             consultaPelicula.setVisible(true);
-
         }
-
-
     }
 }
