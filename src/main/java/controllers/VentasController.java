@@ -22,7 +22,7 @@ public class VentasController {
     }
 
     /**
-     * Default constructor
+     * ATRIBUTOS DE CLASE
      */
     private List<Venta> ventas;
 
@@ -30,8 +30,7 @@ public class VentasController {
 	
     public VentasController(){
         ventas = new ArrayList<Venta>();
-        Venta venta = new Venta(1,new Date(), null, null);
-        ventas.add(venta);
+        preCargaDeFunciones();
     }
 
 
@@ -46,10 +45,86 @@ public class VentasController {
 
     /**
      * Caso de secuencia a desarrollar
-     * @param peliculaID
+     * @param /*peliculaID
      * @return
      */
-    public float recaudacionPorPelicula(int peliculaID) {
+
+    private void preCargaDeFunciones(){
+
+        for(Funcion funcion : funcionController.getListaFunciones()){
+            ventas.add(new Venta(1,new Date(), null, funcion));
+        }
+    }
+
+    public List<PeliculaDTO> reporteMayorRecaudación(){
+
+        //Lista de funciones con ventas:
+        List<Funcion> funcionesConVenta = new  ArrayList<>();
+
+        //Lista de PeliculaDTO para guardar la pelicula y su recaudacion:
+        List<PeliculaDTO> peliculasReporte = new ArrayList<>();
+
+        //Recorremos las funciones:
+        for (Funcion funcion:funcionController.getListaFunciones()){
+            if (buscarVentaPorFuncion(funcion) != null){
+                funcionesConVenta.add(funcion);
+            }
+        }
+
+        Map<String,Float> PelisYRecaudaciones = new HashMap<>();
+
+        //Recorremos las funciones que sí tienen venta:
+        for (Funcion funcion : funcionesConVenta){
+            String nombrePeli = funcion.getPelicula().getNombrePelicula();
+            Float recaudacion = recaudacionPorPelicula(nombrePeli);
+
+            PelisYRecaudaciones.put(nombrePeli,PelisYRecaudaciones.getOrDefault(nombrePeli,0.0f) + recaudacion);
+
+        }
+
+        //Recorremos el diccionario para crear la lista de DTOs:
+        for (Map.Entry<String, Float> entry : PelisYRecaudaciones.entrySet()) {
+            String nombrePelicula = entry.getKey();
+            Float recaudacionTotal = entry.getValue();
+
+            // Crear el DTO y agregarlo a la lista
+            PeliculaDTO peliculaDTO = new PeliculaDTO(nombrePelicula, String.valueOf(recaudacionTotal));
+            peliculasReporte.add(peliculaDTO);
+        }
+
+        //Ordenar la lista de peliculaDTO
+        Collections.sort(peliculasReporte, new Comparator<PeliculaDTO>() {
+            @Override
+            public int compare(PeliculaDTO p1, PeliculaDTO p2) {
+
+                float recaudacion1 = Float.valueOf(p1.getRecaudación());
+                float recaudacion2 = Float.valueOf(p2.getRecaudación());
+                return Float.compare(recaudacion2,recaudacion1);
+            }
+        });
+
+        return peliculasReporte;
+    }
+
+    public float recaudacionPorPelicula(String nombrePelicula) {
+
+        float totalRecaudado = (float)0.0;
+
+        for(Venta venta:ventas){
+            Funcion funcion = venta.getFuncion();
+
+            Pelicula pelicula = funcion.getPelicula();
+
+            if (pelicula.getNombrePelicula().equals(nombrePelicula)){
+                totalRecaudado += venta.getTotal();
+            }
+        }
+
+        return totalRecaudado;
+
+
+
+        /*
         List<Funcion> funciones = funcionController.buscarPeliculaPorFuncion(peliculaID);
         if(funciones.isEmpty()){
             return 0;
@@ -62,6 +137,8 @@ public class VentasController {
             }
         }
     	return totalrecuadado;
+
+         */
     }
 
     /**

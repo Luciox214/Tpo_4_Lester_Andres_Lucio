@@ -29,8 +29,20 @@ public class FuncionController {
 	
 	FuncionController() {
     	funciones = new ArrayList<Funcion>();
-    	funciones.add(new Funcion(new Date(), 1, "11:00", new ArrayList<Entrada>(), new Sala(0, null, 0),
-                new Pelicula(TipoGenero.Terror,"steven spielberg",120,"Tiburon", TipoProyeccion.DosD,new ArrayList<>(),null)));
+    	funciones.add(new Funcion(new Date(), 1, "11:00", new ArrayList<Entrada>(), new Sala(2, null, 0),
+                new Pelicula(TipoGenero.Romance, "Damian Chazelle", 180 , "La La Land", TipoProyeccion.DosD, Arrays.asList("Ryan Gosling", "Emma Stone"),null)));
+
+        funciones.add(new Funcion(new Date(), 2, "14:00", new ArrayList<Entrada>(), new Sala(1, null, 0),
+                new Pelicula(TipoGenero.Suspenso, "Matt Reeves", 180 , "The Batman", TipoProyeccion.TresDMax, Arrays.asList("Robert Pattinson", "Zoe Kravitz"),null)));
+
+        funciones.add(new Funcion(new Date(), 3, "17:30", new ArrayList<Entrada>(), new Sala(2, null, 0),
+                new Pelicula(TipoGenero.Biografica, "David Fincher", 180 , "The Social Network", TipoProyeccion.DosD, Arrays.asList("Jesse Eisenberg", "Andrew Garfield"),null)));
+
+        funciones.add(new Funcion(new Date(), 4, "19:45", new ArrayList<Entrada>(), new Sala(3, null, 0),
+                new Pelicula(TipoGenero.Drama, "Alejandro Gonzalez", 180 , "The Revenant", TipoProyeccion.DosD, Arrays.asList("Leonardo Di Caprio", "Tom Hardy"),null)));
+
+        funciones.add(new Funcion(new Date(), 5, "20:15", new ArrayList<Entrada>(), new Sala(4, null, 0),
+                new Pelicula(TipoGenero.Romance, "Richard Curtis", 123 , "About Time", TipoProyeccion.DosD, Arrays.asList("Domhall Gleeson", "Rachel Adams"),null)));
 
     }
 
@@ -116,12 +128,12 @@ public class FuncionController {
     }
 
     /**
-     * @param fchFuncion 
+     * @param /*fchFuncion
      * @return
      */
-    public List<FuncionDTO> getListaFunciones(Date fchFuncion) {
-        // TODO implement here
-        return null;
+    public List<Funcion> getListaFunciones() {
+
+        return this.funciones;
     }
 
     /**

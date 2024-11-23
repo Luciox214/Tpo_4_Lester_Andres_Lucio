@@ -66,6 +66,8 @@ public class Pelicula {
      */
     private TipoProyeccion tipo;
 
+    private int peliculaID;
+
     public CondicionesDescuento getCondicionesDescuento() {
         return condicionesDescuento;
     }

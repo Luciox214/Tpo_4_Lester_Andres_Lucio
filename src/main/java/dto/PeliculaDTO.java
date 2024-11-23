@@ -10,16 +10,20 @@ public class PeliculaDTO {
 
     private String generoDTO;
 
+    private String recaudación;
+
 
     public PeliculaDTO(String nombre, String duracion, String director, String genero){
        this.generoDTO=genero;
        this.nombreDTO= nombre;
        this.duracionDTO= duracion;
        this.directorDTO= director;
+       this.recaudación = "";
     }
 
-    public PeliculaDTO() {
-
+    public PeliculaDTO(String nombre, String recaudación) {
+        this.nombreDTO = nombre;
+        this.recaudación = recaudación;
     }
 
     public String getNombreDTO() {
@@ -52,5 +56,13 @@ public class PeliculaDTO {
 
     public void setGenero(String genero) {
         this.generoDTO = genero;
+    }
+
+    public String getRecaudación() {
+        return recaudación;
+    }
+
+    public void setRecaudación(String recaudación) {
+        this.recaudación = recaudación;
     }
 }
