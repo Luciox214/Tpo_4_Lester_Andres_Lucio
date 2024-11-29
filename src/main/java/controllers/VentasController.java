@@ -27,17 +27,21 @@ public class VentasController {
     private List<Venta> ventas;
 
     private FuncionController funcionController =  new FuncionController();
+
+    private static VentasController instancia;
 	
     public VentasController(){
         ventas = new ArrayList<Venta>();
         preCargaDeFunciones();
     }
 
+    public static VentasController getInstance(){
+        if(instancia == null){
+            instancia = new VentasController();
+        }
+        return instancia;
+    }
 
-    /**
-     * @param funcionID 
-     * @return
-     */
     public float recaudacionPorFuncion(int funcionID) {
         // TODO implement here
         return 0.0f;
