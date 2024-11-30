@@ -1,10 +1,12 @@
 package view;
 
 import controllers.VentasController;
+import dto.PeliculaDTO;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class RecaudacionPeliculas extends JFrame {
 
@@ -53,6 +55,34 @@ public class RecaudacionPeliculas extends JFrame {
 
     /** Método que invoca al método reporteMayorRecaudacion y muestra su resultado en la tabla **/
     private void MostrarRecaudacion(){
-        //todo: Desarrollar el método que llame a reporteMayorRecaudacion y lo muestre en la tabla.
+
+        try{
+            //Creo la lista que almacena cada pelicula con su recaudacion:
+            ArrayList<PeliculaDTO> pelisYRecaudaciones = ventasController.reporteMayorRecaudación();
+
+            //Limpio la tabla antes de agregar los resultados:
+            tableModel.setRowCount(0);
+
+            //Recorro la lista de peliculas:
+            for(PeliculaDTO pelicula : pelisYRecaudaciones){
+
+                //Agrego una nueva fila por cada set de pelicula y recaudacion:
+                tableModel.addRow(new Object[]{
+                        pelicula.getNombreDTO(),
+                        pelicula.getRecaudación()
+                });
+            }
+
+        } catch (Exception e){
+            JOptionPane.showMessageDialog(null,e.getMessage(),"Error",JOptionPane.ERROR_MESSAGE);
+            tableModel.setRowCount(0);
+        }
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> {
+            RecaudacionPeliculas ui = new RecaudacionPeliculas();
+            ui.setVisible(true);
+        });
     }
 }

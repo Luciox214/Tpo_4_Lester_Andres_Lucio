@@ -60,13 +60,13 @@ public class VentasController {
         }
     }
 
-    public List<PeliculaDTO> reporteMayorRecaudación(){
+    public ArrayList<PeliculaDTO> reporteMayorRecaudación(){
 
         //Lista de funciones con ventas:
         List<Funcion> funcionesConVenta = new  ArrayList<>();
 
         //Lista de PeliculaDTO para guardar la pelicula y su recaudacion:
-        List<PeliculaDTO> peliculasReporte = new ArrayList<>();
+        ArrayList<PeliculaDTO> peliculasReporte = new ArrayList<>();
 
         //Recorremos las funciones:
         for (Funcion funcion:funcionController.getListaFunciones()){
