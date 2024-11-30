@@ -1,6 +1,5 @@
 package controllers;
 
-import controllers.FuncionController;
 import models.*;
 import dto.*;
 import enums.*;
@@ -55,8 +54,16 @@ public class VentasController {
 
     private void preCargaDeFunciones(){
 
+        //Establezco un mínimo y un máximo para generar un número random:
+        float min = 10000;
+        float max = 200000;
+        Random random = new Random();
+
+        //Recorro la lista de funciones y creo una nueva venta por cada una:
         for(Funcion funcion : funcionController.getListaFunciones()){
-            ventas.add(new Venta(1,new Date(), null, funcion));
+
+            //Genero una nueva venta con un total de venta al azar:
+            ventas.add(new Venta(1,new Date(), null, funcion, random.nextFloat(max - min +1) + min));
         }
     }
 
@@ -120,7 +127,7 @@ public class VentasController {
             Pelicula pelicula = funcion.getPelicula();
 
             if (pelicula.getNombrePelicula().equals(nombrePelicula)){
-                totalRecaudado += venta.getTotal();
+                totalRecaudado += venta.getTotalVenta();
             }
         }
 
