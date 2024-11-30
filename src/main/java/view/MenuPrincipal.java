@@ -13,7 +13,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
     private JMenu AltasMenu;
     private JMenu ConsultasMenu;
 
-    private JMenuItem altaFuncion, altaPelicula, consultaGenero;
+    private JMenuItem altaFuncion, altaPelicula, consultaGenero,mayoresRecaudaciones;
 
     // Constructor:
     public MenuPrincipal(String titulo) {
@@ -39,9 +39,11 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         altaFuncion = new JMenuItem("Alta de Funcion");
         altaPelicula = new JMenuItem("Alta de Pelicula");
         consultaGenero = new JMenuItem("Consulta pelicula por genero");
+        mayoresRecaudaciones = new JMenuItem("Consultar mayores recaudaciones x pelicula");
 
         // Agrego los ítems a los menús correspondientes:
         ConsultasMenu.add(consultaGenero);
+        ConsultasMenu.add(mayoresRecaudaciones);
         AltasMenu.add(altaFuncion);
         AltasMenu.add(altaPelicula);
 
@@ -49,6 +51,7 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         altaFuncion.addActionListener(this);
         altaPelicula.addActionListener(this);
         consultaGenero.addActionListener(this);
+        mayoresRecaudaciones.addActionListener(this);
 
         // Agrego los menús a la barra de menú:
         BarraMenu = new JMenuBar();
@@ -89,6 +92,12 @@ public class MenuPrincipal extends JFrame implements ActionListener {
         if (e.getSource() == consultaGenero) {
             ConsultaPelicula consultaPelicula = new ConsultaPelicula();
             consultaPelicula.setVisible(true);
+        }
+
+        //Defino acciones cuando hago clic en el ítem de mayoresRecaudaciones:
+        if(e.getSource() == mayoresRecaudaciones){
+            RecaudacionPeliculas recaudacionPeliculas = new RecaudacionPeliculas();
+            recaudacionPeliculas.setVisible(true);
         }
     }
 }
